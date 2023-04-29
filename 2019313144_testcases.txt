@@ -1,0 +1,10 @@
+./gawk '/0x{1,}/ {print $0}' * | ./gawk -C -V '/[cv]/' | ./gawk -W '/c+/ {' -e 'print $10}'
+./gawk '{ for (i=0; i<NF; i++) total += $i};END {print "\"\\t: " total}' *.c
+./gawk -f ./test/aasort.awk --profile | ./gawk -v sum=10 '/[1]?/ {sum += $0} END{print sum}'
+./gawk -f ./test/lib/awkpath.awk | ./gawk -v t=1 '/^p*.d/ {print $0}' | ./gawk '/[^cv]/'
+./gawk -f ./test/match1.awk | ./gawk -f ./test/tweakfld.awk | ./gawk -f ./test/typedregex1.awk
+./gawk -f ./test/symtab11.awk -f ./test/wjposer1.awk | ./gawk -f ./test/xref.awk
+echo q | ./gawk -D -f ./test/xref.awk | ./gawk --gen-pot -f ./test/genpot.awk
+./gawk -O -N -M --lint[=fatal] -f ./test/xref.awk -f ./test/shadow.awk 
+./gawk -f ./test/aadelete1.awk -P
+./gawk -S -f ./aarray1.awk

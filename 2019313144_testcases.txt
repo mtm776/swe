@@ -1,3 +1,4 @@
+find . -name '*.awk'|awk 'NR%7==0'|xargs -I {} timeout 0.02s ./gawk -f {} >/dev/null 2>&1
 ./gawk '/0x{1,}/ {print $0}' * | ./gawk -C -V '/[cv]/' | ./gawk -W '/c+/ {' -e 'print $10}'
 ./gawk '{ for (i=0; i<NF; i++) total += $i};END {print "\"\\t: " total}' *.c
 ./gawk -f ./test/aasort.awk --profile | ./gawk -v sum=10 '/[1]?/ {sum += $0} END{print sum}'
